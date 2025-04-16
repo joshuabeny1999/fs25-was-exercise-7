@@ -79,10 +79,7 @@ class Environment:
             u, v = tour[-1], tour[0]
             self.graph[u][v]['pheromone'] += 1.0 / tour_cost
 
-    # Get the pheromone trails in the environment
-    def get_pheromone_map(self):
-        pass
-    
+
     # Get the environment topology
     def get_possible_locations(self):
         pass
