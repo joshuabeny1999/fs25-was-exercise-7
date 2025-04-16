@@ -9,6 +9,7 @@ class Ant():
         self.environment = None
         self.alpha = alpha
         self.beta = beta
+        self.initial_location = initial_location
         self.current_location = initial_location
         self.traveled_distance = 0
 
@@ -17,7 +18,30 @@ class Ant():
 
     # The ant runs to visit all the possible locations of the environment 
     def run(self):
-        pass
+        self.tour = [self.initial_location]      # Start tour at the initial location
+        self.visited = {self.initial_location}
+        self.traveled_distance = 0
+        self.current_location = self.initial_location
+
+        while len(self.visited) < len(self.environment.graph.nodes):
+            next_city = self.select_path()
+
+            if next_city is None:
+                break
+
+            # Update distance
+            distance = self.get_distance(self.current_location, next_city)
+            self.traveled_distance += distance
+
+            # Move ant
+            self.tour.append(next_city)
+            self.visited.add(next_city)
+            self.current_location = next_city
+
+        # Complete tour by returning to start
+        start = self.initial_location
+        self.traveled_distance += self.get_distance(self.current_location, start)
+        self.tour.append(start)
 
     # Select the next path based on the random proportional rule of the ACO algorithm
     def select_path(self):

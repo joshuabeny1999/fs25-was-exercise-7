@@ -67,17 +67,12 @@ class Environment:
             for i in range(len(tour) - 1):
                 u, v = tour[i], tour[i + 1]
                 tour_cost += self.graph[u][v]['weight']
-            # Add the return to starting point
-            tour_cost += self.graph[tour[-1]][tour[0]]['weight']
 
             # Add pheromone to all edges in the tour
             for i in range(len(tour) - 1):
                 u, v = tour[i], tour[i+1]
                 self.graph[u][v]['pheromone'] += 1.0 / tour_cost
 
-            # Complete the tour (return to start)
-            u, v = tour[-1], tour[0]
-            self.graph[u][v]['pheromone'] += 1.0 / tour_cost
 
 
     # Get the environment topology
