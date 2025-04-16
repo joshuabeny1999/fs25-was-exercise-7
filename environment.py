@@ -20,8 +20,6 @@ class Environment:
         # Initialize the pheromone map in the environment
         self.initialize_pheromone_map()
 
-        print(self.graph[1][2])
-
     # Initialize the pheromone trails in the environment
     def initialize_pheromone_map(self):
         c_nn = self._calculate_nearest_neighbor_tour_length()

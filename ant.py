@@ -43,6 +43,8 @@ class Ant():
         self.traveled_distance += self.get_distance(self.current_location, start)
         self.tour.append(start)
 
+        return self.tour, self.traveled_distance
+
     # Select the next path based on the random proportional rule of the ACO algorithm
     def select_path(self):
         graph = self.environment.graph
